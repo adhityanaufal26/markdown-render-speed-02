@@ -1,35 +1,13 @@
-# Fast marked drop-in
+# markdown-render-speed-02
 
-A faster drop-in replacement for [marked](https://github.com/markedjs/marked) 18.1.3.
+[![make.fun · markdown-render-speed-02](https://make.fun/badge/markdown-render-speed-02.svg)](https://make.fun/bounty/markdown-render-speed-02?utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02)
+[![rank](https://make.fun/badge/markdown-render-speed-02/adhityanaufal26/markdown-render-speed-02/rank.svg)](https://make.fun/bounty/markdown-render-speed-02/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02)
+[![reward](https://make.fun/badge/markdown-render-speed-02/adhityanaufal26/markdown-render-speed-02/reward.svg)](https://make.fun/bounty/markdown-render-speed-02?utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02)
 
-Renders exactly marked's HTML byte-for-byte on all 720 cases — CommonMark 0.31.2
-and GFM 0.29 spec examples plus 40 generated READMEs — while running about
-**2.59x faster** than marked.
+Fast marked drop-in: a faster drop-in replacement for marked 18.1.3 that renders exactly marked's HTML byte-for-byte on all 720 cases (every CommonMark 0.31.2 spec example, every GFM 0.29 extension example, and 40 long generated READMEs), at ~2.59x the speed of marked itself. Dependency-free JavaScript module parse.js with parse(markdown), plus main.ts, the program the harness runs: it reads cases and writes HTML. Entered on make.fun: https://make.fun/bounty/markdown-render-speed-02
 
-## Files
+## Run it
 
-- `parse.js` — dependency-free JavaScript module. Exports `parse(markdown)`,
-  which returns the same HTML string marked 18.1.3 produces for the same input.
-- `main.ts` — program that reads cases and writes HTML (uses `parse.js`).
-
-## Usage
-
-```js
-import { parse } from "./parse.js";
-
-const html = parse("# Hello\n\nSome **bold** text.");
-console.log(html);
+```sh
+node main.ts
 ```
-
-No dependencies, no build step — `parse.js` runs as-is in Node or in a browser.
-
-## Performance
-
-Measured locally on the 720-case suite:
-
-| | min | median |
-| --- | --- | --- |
-| this renderer | 273.1 ms | 315.4 ms |
-| marked 18.1.3 | 707.0 ms | 722.9 ms |
-
-Same output, ~2.59x faster.
